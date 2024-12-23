@@ -1,0 +1,155 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"db-service","namespace":"default"},"spec":{"ports":[{"port":3306,"targetPort":3306}],"selector":{"name":"mysql"}}}
+    creationTimestamp: "2024-12-23T20:02:01Z"
+    name: db-service
+    namespace: default
+    resourceVersion: "3811"
+    uid: 72245378-8710-40d4-8fc9-76ef4a0406fa
+  spec:
+    clusterIP: 10.103.128.135
+    clusterIPs:
+    - 10.103.128.135
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      name: mysql
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"external-service","namespace":"default"},"spec":{"ports":[{"nodePort":30080,"port":8080,"targetPort":8080}],"selector":{"name":"external"},"type":"NodePort"}}
+    creationTimestamp: "2024-12-23T20:02:01Z"
+    name: external-service
+    namespace: default
+    resourceVersion: "3801"
+    uid: 34432935-f23c-433e-8d89-29ac51c9a661
+  spec:
+    clusterIP: 10.100.38.240
+    clusterIPs:
+    - 10.100.38.240
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30080
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      name: external
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"internal-service","namespace":"default"},"spec":{"ports":[{"nodePort":30082,"port":8080,"targetPort":8080}],"selector":{"name":"internal"},"type":"NodePort"}}
+    creationTimestamp: "2024-12-23T20:02:01Z"
+    name: internal-service
+    namespace: default
+    resourceVersion: "3807"
+    uid: f9e7c92f-8b8c-483c-a00f-1f5554bbdcab
+  spec:
+    clusterIP: 10.103.253.189
+    clusterIPs:
+    - 10.103.253.189
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30082
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      name: internal
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2024-12-23T19:18:53Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "209"
+    uid: 01332a6c-add0-4767-b699-1e8197c46784
+  spec:
+    clusterIP: 10.96.0.1
+    clusterIPs:
+    - 10.96.0.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 6443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"payroll-service","namespace":"default"},"spec":{"ports":[{"nodePort":30083,"port":8080,"targetPort":8080}],"selector":{"name":"payroll"},"type":"NodePort"}}
+    creationTimestamp: "2024-12-23T20:02:01Z"
+    name: payroll-service
+    namespace: default
+    resourceVersion: "3816"
+    uid: d2dab86f-ecfe-47b3-a23c-492cf7b06d89
+  spec:
+    clusterIP: 10.105.237.209
+    clusterIPs:
+    - 10.105.237.209
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30083
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      name: payroll
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
