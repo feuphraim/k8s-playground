@@ -1,6 +1,6 @@
 # 🚀 Kubernetes k8s-playground - Portfolio
 
-Ce repository regroupe des travaux et exercices pratiques réalisés sur Kubernetes (CKA). Les fichiers sont organisés par modules, reflétant les compétences acquises sur les principaux sujets de Kubernetes.
+Ce repository regroupe des travaux et exercices pratiques réalisés sur Kubernetes. Les fichiers sont organisés par modules, reflétant les compétences acquises sur les principaux sujets de Kubernetes.
 
 ---
 
