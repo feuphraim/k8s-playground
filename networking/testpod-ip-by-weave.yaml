@@ -1,0 +1,20 @@
+#k run busybox --image=busybox --dry-run=client -o yaml -- sleep 1000 > pod-ip-by-weave.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod-ip-by-weave
+  name: pod-ip-by-weave
+spec:
+  nodeName: node01
+  containers:
+  - args:
+    - sleep
+    - "1000"
+    image: busybox
+    name: pod-ip-by-weave
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
