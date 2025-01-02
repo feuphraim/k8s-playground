@@ -3,3 +3,4 @@
 .DS_Store*
 .env
 #*secret*
+networking/coredns-usecase.yaml
