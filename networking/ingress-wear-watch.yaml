@@ -1,0 +1,39 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    creationTimestamp: "2025-01-03T08:47:05Z"
+    generation: 1
+    name: ingress-wear-watch
+    namespace: app-space
+    resourceVersion: "766"
+    uid: a595c95e-2179-41cb-86d4-61c933f62632
+  spec:
+    rules:
+    - http:
+        paths:
+        - backend:
+            service:
+              name: wear-service
+              port:
+                number: 8080
+          path: /wear
+          pathType: Prefix
+        - backend:
+            service:
+              name: video-service
+              port:
+                number: 8080
+          path: /watch
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 172.20.141.238
+kind: List
+metadata:
+  resourceVersion: ""
