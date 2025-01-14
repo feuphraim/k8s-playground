@@ -1,0 +1,148 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+# pods "mysql" was not valid:
+# * spec: Forbidden: pod updates may not change fields other than `spec.containers[*].image`,`spec.initContainers[*].image`,`spec.activeDeadlineSeconds`,`spec.tolerations` (only additions to existing tolerations),`spec.terminationGracePeriodSeconds` (allow it to be set to 1 if it was previously negative)
+#   core.PodSpec{
+#       Volumes:        {{Name: "kube-api-access-fncr4", VolumeSource: {Projected: &{Sources: {{ServiceAccountToken: &{ExpirationSeconds: 3607, Path: "token"}}, {ConfigMap: &{LocalObjectReference: {Name: "kube-root-ca.crt"}, Items: {{Key: "ca.crt", Path: "ca.crt"}}}}, {DownwardAPI: &{Items: {{Path: "namespace", FieldRef: &{APIVersion: "v1", FieldPath: "metadata.namespace"}}}}}}, DefaultMode: &420}}}},
+#       InitContainers: nil,
+#       Containers: []core.Container{
+#               {
+#                       ... // 5 identical fields
+#                       Ports:   {{ContainerPort: 3306, Protocol: "TCP"}},
+#                       EnvFrom: nil,
+#                       Env: []core.EnvVar{
+#                               {
+#                                       Name:      "MYSQL_ROOT_PASSWORD",
+# -                                     Value:     "passwooooorrddd",
+# +                                     Value:     "paswrd",
+#                                       ValueFrom: nil,
+#                               },
+#                       },
+#                       Resources:    {},
+#                       ResizePolicy: nil,
+#                       ... // 14 identical fields
+#               },
+#       },
+#       EphemeralContainers: nil,
+#       RestartPolicy:       "Always",
+#       ... // 28 identical fields
+#   }
+
+#
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2025-01-14T09:44:12Z"
+  labels:
+    name: mysql
+  name: mysql
+  namespace: epsilon
+  resourceVersion: "1910"
+  uid: 58fe0e2c-9b4e-4d58-b0a0-022f62665555
+spec:
+  containers:
+  - env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: paswrd
+    image: mysql:5.6
+    imagePullPolicy: IfNotPresent
+    name: mysql
+    ports:
+    - containerPort: 3306
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-fncr4
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: controlplane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-fncr4
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-14T09:44:13Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-14T09:44:12Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-14T09:44:13Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-14T09:44:13Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-14T09:44:12Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://cf1fce4274e1e30544c9d54b05f858ec7f1c128dbbd2e3b4f4147c0992a70cd5
+    image: docker.io/library/mysql:5.6
+    imageID: docker.io/library/mysql@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae
+    lastState: {}
+    name: mysql
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-01-14T09:44:13Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-fncr4
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.75.179
+  hostIPs:
+  - ip: 192.168.75.179
+  phase: Running
+  podIP: 10.42.0.18
+  podIPs:
+  - ip: 10.42.0.18
+  qosClass: BestEffort
+  startTime: "2025-01-14T09:44:12Z"

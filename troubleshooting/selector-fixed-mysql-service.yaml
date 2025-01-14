@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-01-14T09:23:33Z"
+  name: mysql-service
+  namespace: gamma
+  resourceVersion: "1398"
+  uid: f0224a23-d2e4-4a6f-896f-ca5151dcd277
+spec:
+  clusterIP: 10.43.6.55
+  clusterIPs:
+  - 10.43.6.55
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    name: mysql
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-01-14T09:48:52Z"
+  name: web-service
+  namespace: zeta
+  resourceVersion: "2353"
+  uid: 159a8082-1f02-46bc-92a8-275e47884f70
+spec:
+  clusterIP: 10.43.94.11
+  clusterIPs:
+  - 10.43.94.11
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30081
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: webapp-mysql
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
