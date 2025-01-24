@@ -1,0 +1,6 @@
+#kubectl get pv --sort-by=.spec.capacity.storage -o=custom-columns=NAME:.metadata.name,CAPACITY:.spec.capacity.storage > /opt/outputs/pv-and-capacity-sorted.txt
+NAME       CAPACITY
+pv-log-4   40Mi
+pv-log-1   100Mi
+pv-log-2   200Mi
+pv-log-3   300Mi

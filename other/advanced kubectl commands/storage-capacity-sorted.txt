@@ -1,0 +1,6 @@
+#kubectl get pv --sort-by=.spec.capacity.storage > /opt/outputs/storage-capacity-sorted.txt
+NAME       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pv-log-4   40Mi       RWX            Retain           Available                          <unset>                          12m
+pv-log-1   100Mi      RWX            Retain           Available                          <unset>                          12m
+pv-log-2   200Mi      RWX            Retain           Available                          <unset>                          12m
+pv-log-3   300Mi      RWX            Retain           Available                          <unset>                          12m

@@ -1,0 +1,2 @@
+#k config view --kubeconfig=/root/my-kube-config -o jsonpath={.users.*.name} > /opt/outputs/users.txt
+aws-user dev-user test-user
