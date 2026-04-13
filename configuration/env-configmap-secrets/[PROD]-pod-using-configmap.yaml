@@ -1,0 +1,123 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2026-04-13T07:15:10Z"
+  generation: 1
+  labels:
+    name: webapp-color
+  name: webapp-color
+  namespace: default
+  resourceVersion: "960"
+  uid: 792274e7-27b2-4832-ba10-7872378cdecd
+spec:
+  containers:
+  - env:
+    - name: APP_COLOR
+      valueFrom:
+        configMapKeyRef:
+          name: webapp-config-map 
+          key: APP_COLOR
+    image: eup-docker-repo/webapp-color
+    imagePullPolicy: Always
+    name: webapp-color
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-h7m94
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: controlplane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-h7m94
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-04-13T07:15:15Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-04-13T07:15:10Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-04-13T07:15:15Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-04-13T07:15:15Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-04-13T07:15:10Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://f7bb00ae9844a73ef4a8c57305132f142cb126eb950f5812f5bde69852a89cb1
+    image: docker.io/eup-docker-repo/webapp-color:latest
+    imageID: docker.io/eup-docker-repo/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    lastState: {}
+    name: webapp-color
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-04-13T07:15:14Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-h7m94
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.186.251
+  hostIPs:
+  - ip: 192.168.186.251
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.22.0.9
+  podIPs:
+  - ip: 10.22.0.9
+  qosClass: BestEffort
+  startTime: "2026-04-13T07:15:10Z"
