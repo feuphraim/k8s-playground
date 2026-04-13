@@ -17,7 +17,7 @@ spec:
         configMapKeyRef:
           name: webapp-config-map 
           key: APP_COLOR
-    image: eup-docker-repo/webapp-color
+    image: euphraim/webapp-color
     imagePullPolicy: Always
     name: webapp-color
     resources: {}
@@ -95,8 +95,8 @@ status:
     type: PodScheduled
   containerStatuses:
   - containerID: containerd://f7bb00ae9844a73ef4a8c57305132f142cb126eb950f5812f5bde69852a89cb1
-    image: docker.io/eup-docker-repo/webapp-color:latest
-    imageID: docker.io/eup-docker-repo/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    image: docker.io/euphraim/webapp-color:latest
+    imageID: docker.io/euphraim/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
     lastState: {}
     name: webapp-color
     ready: true
