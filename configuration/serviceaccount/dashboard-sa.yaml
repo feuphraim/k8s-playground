@@ -1,0 +1,9 @@
+apiVersion: v1
+automountServiceAccountToken: false
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2026-04-19T14:50:06Z"
+  name: dashboard-sa
+  namespace: default
+  resourceVersion: "1281"
+  uid: a8d3d186-5087-41e2-af3e-6ff1482aab2c
