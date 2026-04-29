@@ -1,0 +1,20 @@
+#Deploy the Metrics Server in your Kubernetes cluster by applying the latest release components.yaml manifest
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+#Check the output of  the metrics server 
+k top node
+
+#Identify the node that consumes the most CPU(cores).
+kubectl top node --sort-by='cpu' --no-headers | head -1 
+
+#Identify the node that consumes the most Memory(bytes).
+kubectl top node --sort-by='memory' --no-headers | head -1 
+
+#Identify the POD that consumes the most Memory(bytes) in default namespace.
+kubectl top pod --sort-by='memory' --no-headers | head -1 
+
+
+#Identify the POD that consumes the least CPU(cores) in default namespace.
+kubectl top pod --sort-by='cpu' --no-headers | tail -1 
+
+
