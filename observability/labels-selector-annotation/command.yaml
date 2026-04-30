@@ -1,0 +1,10 @@
+k describe pod | grep env=dev
+k get pod --selector=env=dev
+kubectl get pods --selector env=dev --no-headers | wc -l
+k get pod --selector=bu=finance
+k get pod --selector=bu=finance --no-headers | wc -l
+kubectl get all --selector env=prod --no-headers | wc -l
+kubectl get all --selector env=prod 
+kubectl get all --selector env=prod --help
+k get pod --selector env=prod,bu=finance,tier=frontend
+kubectl get all --selector env=prod,bu=finance,tier=frontend
