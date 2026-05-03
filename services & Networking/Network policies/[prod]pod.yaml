@@ -1,0 +1,527 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: c664fe12b2cd354ca4f7d78b0b6ad218d896f87b2b4cc3199d6ed8c323c114f8
+      cni.projectcalico.org/podIP: 172.17.0.5/32
+      cni.projectcalico.org/podIPs: 172.17.0.5/32
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"name":"external"},"name":"external","namespace":"default"},"spec":{"containers":[{"env":[{"name":"APP_NAME","value":"External Facing Application"},{"name":"BG_COLOR","value":"red"}],"image":"kodekloud/webapp-conntest","name":"external","ports":[{"containerPort":8080}]}]}}
+    creationTimestamp: "2026-05-03T10:54:44Z"
+    generation: 1
+    labels:
+      name: external
+    name: external
+    namespace: default
+    resourceVersion: "5630"
+    uid: 9119cfbc-e64f-44e3-bef1-a24a7b44dd1c
+  spec:
+    containers:
+    - env:
+      - name: APP_NAME
+        value: External Facing Application
+      - name: BG_COLOR
+        value: red
+      image: kodekloud/webapp-conntest
+      imagePullPolicy: Always
+      name: external
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-ks9mh
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: controlplane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-ks9mh
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://fc5b2fe659bd2a92292f0d119844196b0624fc03bb8779eefbba80f823283d82
+      image: docker.io/kodekloud/webapp-conntest:latest
+      imageID: docker.io/kodekloud/webapp-conntest@sha256:b87d6b99f127ef10274e4447b3a151127688369b82eab09eba6ab6a84e6c5689
+      lastState: {}
+      name: external
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-05-03T10:55:08Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-ks9mh
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.25.191
+    hostIPs:
+    - ip: 192.168.25.191
+    observedGeneration: 1
+    phase: Running
+    podIP: 172.17.0.5
+    podIPs:
+    - ip: 172.17.0.5
+    qosClass: BestEffort
+    startTime: "2026-05-03T10:54:44Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: bfc9c5f4f30b0befc8a0c4e3126147cbcb1cb1ebc6a0be2f76301058a9f0fd2d
+      cni.projectcalico.org/podIP: 172.17.0.8/32
+      cni.projectcalico.org/podIPs: 172.17.0.8/32
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"name":"internal"},"name":"internal","namespace":"default"},"spec":{"containers":[{"env":[{"name":"APP_NAME","value":"Internal Facing Application"},{"name":"BG_COLOR","value":"blue"}],"image":"kodekloud/webapp-conntest","name":"internal","ports":[{"containerPort":8080}]}]}}
+    creationTimestamp: "2026-05-03T10:54:44Z"
+    generation: 1
+    labels:
+      name: internal
+    name: internal
+    namespace: default
+    resourceVersion: "5636"
+    uid: 6b1f2897-27e9-4e08-8270-11873ad589ff
+  spec:
+    containers:
+    - env:
+      - name: APP_NAME
+        value: Internal Facing Application
+      - name: BG_COLOR
+        value: blue
+      image: kodekloud/webapp-conntest
+      imagePullPolicy: Always
+      name: internal
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kz4qh
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: controlplane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-kz4qh
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://e909f20c8602c874e44c40eff0fe423763b6e829e9efd3b22427a82392da626b
+      image: docker.io/kodekloud/webapp-conntest:latest
+      imageID: docker.io/kodekloud/webapp-conntest@sha256:b87d6b99f127ef10274e4447b3a151127688369b82eab09eba6ab6a84e6c5689
+      lastState: {}
+      name: internal
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-05-03T10:55:08Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kz4qh
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.25.191
+    hostIPs:
+    - ip: 192.168.25.191
+    observedGeneration: 1
+    phase: Running
+    podIP: 172.17.0.8
+    podIPs:
+    - ip: 172.17.0.8
+    qosClass: BestEffort
+    startTime: "2026-05-03T10:54:44Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: 521765bbd09447cb4c3ab3fa22ab785b67103d86faf26281c5d62083bc845f3a
+      cni.projectcalico.org/podIP: 172.17.0.6/32
+      cni.projectcalico.org/podIPs: 172.17.0.6/32
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"name":"mysql"},"name":"mysql","namespace":"default"},"spec":{"containers":[{"env":[{"name":"MYSQL_ROOT_PASSWORD","value":"paswrd"}],"image":"mysql","name":"mysql","ports":[{"containerPort":3306}]}]}}
+    creationTimestamp: "2026-05-03T10:54:44Z"
+    generation: 1
+    labels:
+      name: mysql
+    name: mysql
+    namespace: default
+    resourceVersion: "5633"
+    uid: 4af70f37-f3f5-4a76-8056-ffec3904e674
+  spec:
+    containers:
+    - env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: paswrd
+      image: mysql
+      imagePullPolicy: Always
+      name: mysql
+      ports:
+      - containerPort: 3306
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rmsw2
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: controlplane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-rmsw2
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:55:08Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://1484c60684c7264995688a151a498725038236544a2823b721d8eb465e4fc505
+      image: docker.io/library/mysql:latest
+      imageID: docker.io/library/mysql@sha256:c9e48b0c008f1936d4139d1c0dcd5950a9dbe57d4d40f383013cde432fa6d6aa
+      lastState: {}
+      name: mysql
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-05-03T10:55:08Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rmsw2
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.25.191
+    hostIPs:
+    - ip: 192.168.25.191
+    observedGeneration: 1
+    phase: Running
+    podIP: 172.17.0.6
+    podIPs:
+    - ip: 172.17.0.6
+    qosClass: BestEffort
+    startTime: "2026-05-03T10:54:44Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: 3312f8f36326124b413e93554b6ebf5de5bf942a67c99a7a022305c893027156
+      cni.projectcalico.org/podIP: 172.17.0.7/32
+      cni.projectcalico.org/podIPs: 172.17.0.7/32
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"name":"payroll"},"name":"payroll","namespace":"default"},"spec":{"containers":[{"env":[{"name":"APP_NAME","value":"Payroll Application"},{"name":"BG_COLOR","value":"blue"}],"image":"kodekloud/webapp-conntest","name":"payroll","ports":[{"containerPort":8080}]}]}}
+    creationTimestamp: "2026-05-03T10:54:44Z"
+    generation: 1
+    labels:
+      name: payroll
+    name: payroll
+    namespace: default
+    resourceVersion: "5594"
+    uid: f98e3571-1fd6-44b5-b720-44eb926325c8
+  spec:
+    containers:
+    - env:
+      - name: APP_NAME
+        value: Payroll Application
+      - name: BG_COLOR
+        value: blue
+      image: kodekloud/webapp-conntest
+      imagePullPolicy: Always
+      name: payroll
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f785m
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: controlplane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-f785m
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:50Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:50Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:50Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-05-03T10:54:44Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://0473ae7fe1e567312cfc0a64d39b7e10381e1e7d8533a06ef54413f1a67a8d1b
+      image: docker.io/kodekloud/webapp-conntest:latest
+      imageID: docker.io/kodekloud/webapp-conntest@sha256:b87d6b99f127ef10274e4447b3a151127688369b82eab09eba6ab6a84e6c5689
+      lastState: {}
+      name: payroll
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-05-03T10:54:50Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f785m
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.25.191
+    hostIPs:
+    - ip: 192.168.25.191
+    observedGeneration: 1
+    phase: Running
+    podIP: 172.17.0.7
+    podIPs:
+    - ip: 172.17.0.7
+    qosClass: BestEffort
+    startTime: "2026-05-03T10:54:44Z"
+kind: List
+metadata:
+  resourceVersion: ""
