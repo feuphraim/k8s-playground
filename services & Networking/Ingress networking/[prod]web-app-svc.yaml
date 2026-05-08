@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2026-05-08T08:42:42Z"
+  name: web-app
+  namespace: webapp
+  resourceVersion: "1341"
+  uid: 3745db62-6e4c-4aef-abfc-61e344f59710
+spec:
+  clusterIP: 172.20.180.143
+  clusterIPs:
+  - 172.20.180.143
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: web-app
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
