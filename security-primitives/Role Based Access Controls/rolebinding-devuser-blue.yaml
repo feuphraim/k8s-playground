@@ -1,0 +1,21 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    creationTimestamp: "2026-08-28T02:32:32Z"
+    name: dev-user-binding
+    namespace: blue
+    resourceVersion: "2269"
+    uid: 271d53d1-b0fa-4405-b32e-13beccc8f845
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: developer
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: dev-user
+kind: List
+metadata:
+  resourceVersion: ""
