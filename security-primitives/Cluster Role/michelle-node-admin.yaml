@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: "2026-08-29T08:37:18Z"
+  name: michelle-clusterrolebinding
+  resourceVersion: "1264"
+  uid: 811ea1c0-1786-48e8-95fe-93f8f1971513
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: node-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: michelle

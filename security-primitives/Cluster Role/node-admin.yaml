@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: "2026-08-29T08:34:40Z"
+  name: node-admin
+  resourceVersion: "1216"
+  uid: fcbd5b66-1089-4149-a6e5-78167dfcfce5
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - '*'
