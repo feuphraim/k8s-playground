@@ -1,0 +1,7 @@
+patches:
+  - target:
+      kind: Deployment
+      name: mongo-deployment
+    patch: |-
+      - op: remove
+        path: /spec/template/metadata/labels/org
